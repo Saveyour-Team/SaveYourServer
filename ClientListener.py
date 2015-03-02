@@ -5,15 +5,36 @@ PORT = 80 #Currently set to 80 so I can debug by going to localhost in my browse
 ADDRESS = ('127.0.0.1', PORT)
 MAX_INC_SIZE = 4096
 
+
+def authenticate(username, password):
+	"""Uses the Login Class to authenticate the username and password."""
+	#This will need to be updated to call the Login class once it is implemented.
+	if (username == 'Tommy' and password == 'poop'):
+		return True;
+	return False;
+
+
 def getConnection(clientSocket, addr):
 	"""This method is called whenever a new connection thread is made."""
 
+	loggedIn = False;
+
  	clientRequest = clientSocket.recv(MAX_INC_SIZE)
+ 	clientRequest = "Tommy,poop"
+ 	clientInfo = clientRequest.split(",");
+ 	username = clientInfo[0]
+ 	password = clientInfo[1]
+ 	#print "Received: " + clientRequest
+ 	#print "Username: " + username
+ 	#print "Password: " + password
+ 	loggedIn = authenticate(username, password)
+ 	if (loggedIn == True):
+ 		response = "Logged in as " + username;
+ 	else:
+ 		response = "Invalid Username or Password"
 
- 	response = clientRequest;
+
  	#print response;
-
-	print clientRequest;
  	clientSocket.send(response)
  	clientSocket.close()
 
