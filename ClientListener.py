@@ -7,12 +7,13 @@ MAX_INC_SIZE = 4096
 
 def getConnection(clientSocket, addr):
 	"""This method is called whenever a new connection thread is made."""
- 
+
  	clientRequest = clientSocket.recv(MAX_INC_SIZE)
 
- 	response = 'Hello World! But seriously this is a placeholder.'
+ 	response = clientRequest;
  	#print response;
- 		
+
+	print clientRequest;
  	clientSocket.send(response)
  	clientSocket.close()
 
@@ -32,8 +33,8 @@ def startListening():
 
 def stopListening():
 	"""Stop the server from listening for incoming connections."""
-	serverSocket.close() 
- 	
+	serverSocket.close()
+
 
 #This line is here for debug purposes, later on the ClientListener will probably be called from elsewhere.
 startListening()
