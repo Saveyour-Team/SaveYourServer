@@ -20,7 +20,7 @@ def getConnection(clientSocket, addr):
 	loggedIn = False;
 
  	clientRequest = clientSocket.recv(MAX_INC_SIZE)
- 	clientRequest = "Tommy,poop"
+ 	#clientRequest = "Tommy,poop"
  	clientInfo = clientRequest.split(",");
  	username = clientInfo[0]
  	password = clientInfo[1]
