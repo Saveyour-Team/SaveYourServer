@@ -1,5 +1,7 @@
 import threading
 import socket
+import Login
+import FileManager
 
 PORT = 80 #Currently set to 80 so I can debug by going to localhost in my browser and seeing what it says.
 ADDRESS = ('127.0.0.1', PORT)
@@ -9,9 +11,7 @@ MAX_INC_SIZE = 4096
 def authenticate(username, password):
 	"""Uses the Login Class to authenticate the username and password."""
 	#This will need to be updated to call the Login class once it is implemented.
-	if (username == 'Tommy' and password == 'poop'):
-		return True;
-	return False;
+	return Login.authenticate(username,password)
 
 
 def getConnection(clientSocket, addr):
@@ -20,7 +20,9 @@ def getConnection(clientSocket, addr):
 	loggedIn = False;
 
  	clientRequest = clientSocket.recv(MAX_INC_SIZE)
+
  	#clientRequest = "Tommy,poop"
+
  	clientInfo = clientRequest.split(",");
  	username = clientInfo[0]
  	password = clientInfo[1]
