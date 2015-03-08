@@ -61,3 +61,4 @@ def stopListening():
 
 #This line is here for debug purposes, later on the ClientListener will probably be called from elsewhere.
 startListening()
+FileManager.connectToDB()

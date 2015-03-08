@@ -1,6 +1,23 @@
+import pymongo
+
 usersMockup = {'Tommy':'poop', 'Brendan':'ih8slackbot', 'Nate':'kingProjectManager', 'Justin':'whyPoop?', 'Terrence':'What?', 'John':'mongoDBisDaBest', 'Simran':'pyth0n'}
 
-def getField(username, field):
+DATABASE_ADDRESS = 'ec2-54-173-26-10.compute-1.amazonaws.com'
+DATABASE_PORT = 27017
+DATABASE_NAME = 'SaveYourDB'
+
+client
+db
+users
+
+
+def connectToDB():
+	client = MongoClient(DATABASE_ADDRESS, DATABASE_PORT)
+	db = client[DATABASE_NAME]
+	users = db.SaveYourDB
+
+
+def getFieldMockup(username, field):
 	""" MOCKUP FOR NOW"""
 	if (field != 'password'):
 		return 'ACCESS DENIED'
@@ -9,3 +26,15 @@ def getField(username, field):
 		return usersMockup[username]
 	except KeyError:
 		return 'NOT FOUND'
+
+def getField(username, field):
+	data = users.find_one({"usr": username},{field:True})
+	return data
+
+def getUserDoc(username):
+	return None
+
+connectToDB()
+print getField('Tommy', 'pwd')
+
+	
