@@ -4,7 +4,7 @@ import Login
 import FileManager
 
 PORT = 80 #Currently set to 80 so I can debug by going to localhost in my browser and seeing what it says.
-ADDRESS = ('127.0.0.1', PORT)
+ADDRESS = ('0.0.0.0', PORT)
 MAX_INC_SIZE = 4096
 
 
@@ -16,7 +16,7 @@ def authenticate(username, password):
 
 def getConnection(clientSocket, addr):
 	"""This method is called whenever a new connection thread is made."""
-
+	print "NEW CONNECTION DETECTED"
 	loggedIn = False;
 
  	clientRequest = clientSocket.recv(MAX_INC_SIZE)
@@ -48,9 +48,11 @@ def startListening():
 	serverSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 	serverSocket.bind(ADDRESS)
 	serverSocket.listen(5)
+	print "NOW LISTENING"
 	while True:
 		#Establish the connection and spawn a new thread for each connection
  		clientSocket, addr = serverSocket.accept()
+		print "ACCEPTED CONNECTION"
  		thread = threading.Thread(None, getConnection, None, (clientSocket, addr), {})
  		thread.start()
 
