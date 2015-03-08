@@ -12,7 +12,7 @@ def hash(pw):
 
 def authenticate(username, password):
 	passwordHash = hash(password)
-	localpw = FileManager.getField(username, 'password')
+	localpw = FileManager.getField(username, 'pwd')
 	if localpw == 'NOT FOUND':
 		return False
 	return localpw == passwordHash
