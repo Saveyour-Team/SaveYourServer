@@ -12,6 +12,9 @@ users
 
 
 def connectToDB():
+	global client
+	global db
+	global users
 	client = MongoClient(DATABASE_ADDRESS, DATABASE_PORT)
 	db = client[DATABASE_NAME]
 	users = db.SaveYourDB
