@@ -1,4 +1,4 @@
-import pymongo
+from pymongo import MongoClient
 
 usersMockup = {'Tommy':'poop', 'Brendan':'ih8slackbot', 'Nate':'kingProjectManager', 'Justin':'whyPoop?', 'Terrence':'What?', 'John':'mongoDBisDaBest', 'Simran':'pyth0n'}
 
@@ -6,16 +6,11 @@ DATABASE_ADDRESS = 'ec2-54-173-26-10.compute-1.amazonaws.com'
 DATABASE_PORT = 27017
 DATABASE_NAME = 'SaveYourDB'
 
-client
-db
-users
-
-
 def connectToDB():
 	global client
 	global db
 	global users
-	client = MongoClient(DATABASE_ADDRESS, DATABASE_PORT)
+	client = MongoClient()
 	db = client[DATABASE_NAME]
 	users = db.SaveYourDB
 
@@ -39,5 +34,3 @@ def getUserDoc(username):
 
 connectToDB()
 print getField('Tommy', 'pwd')
-
-	
