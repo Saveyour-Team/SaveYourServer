@@ -22,7 +22,6 @@ def getConnection(clientSocket, addr):
 
  	clientRequest = clientSocket.recv(MAX_INC_SIZE)
 
- 	#clientRequest = "Tommy,poop"
 
  	clientInfo = clientRequest.split(",");
  	if len(clientInfo) != 2:
@@ -41,10 +40,13 @@ def getConnection(clientSocket, addr):
  		response = "Logged in as " + username;
  	else:
  		response = "Invalid Username or Password"
-
-
  	#print response;
  	clientSocket.send(response)
+
+ 	if loggedIn:
+ 		data = FileManager.getField(username, 'data')
+ 		clientSocket.send(data)
+
  	clientSocket.close()
  	return
 
