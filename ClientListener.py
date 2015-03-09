@@ -43,7 +43,8 @@ def getConnection(clientSocket, addr):
  	#print response;
 
 	if loggedIn:
-		response += " Data: " + FileManager.getField(username, 'data')
+		data = FileManager.getField(username, 'data')
+		response = response + ", Data: " + data
  	clientSocket.send(response)
 
 # 	if loggedIn:
