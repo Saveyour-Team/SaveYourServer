@@ -3,7 +3,7 @@ import socket
 import Login
 import FileManager
 
-#2xAdding this line to test git autodeploy! This counts as a difference I hope...
+#Adding this line to test git autodeploy! This counts as a difference I hope...
 PORT = 80 #Currently set to 80 so I can debug by going to localhost in my browser and seeing what it says.
 ADDRESS = ('0.0.0.0', PORT)
 MAX_INC_SIZE = 4096
