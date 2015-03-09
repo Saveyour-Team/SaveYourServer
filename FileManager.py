@@ -27,6 +27,8 @@ def getFieldMockup(username, field):
 
 def getField(username, field):
 	data = users.find_one({"usr": username},{field:True})
+	if data == None:
+		return None
 	return data[field]
 
 def getUserDoc(username):

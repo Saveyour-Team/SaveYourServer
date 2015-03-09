@@ -12,8 +12,8 @@ def hash(pw):
 
 def authenticate(username, password):
 	passwordHash = hash(password)
-	localpw = FileManager.getField(username, 'pwd')
-	if localpw == 'NOT FOUND':
+	serversidepw = FileManager.getField(username, 'pwd')
+	if serversidepw == None:
 		return False
-	return localpw == passwordHash
+	return serversidepw == passwordHash
 
