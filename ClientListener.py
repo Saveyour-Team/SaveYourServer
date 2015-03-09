@@ -41,11 +41,14 @@ def getConnection(clientSocket, addr):
  	else:
  		response = "Invalid Username or Password"
  	#print response;
+
+	if loggedIn:
+		response += " Data: " + FileManager.getField(username, 'data')
  	clientSocket.send(response)
 
- 	if loggedIn:
- 		data = FileManager.getField(username, 'data')
- 		clientSocket.send(data)
+# 	if loggedIn:
+# 		data = FileManager.getField(username, 'data')
+# 		clientSocket.send(data)
 
  	clientSocket.close()
  	return
