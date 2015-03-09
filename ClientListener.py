@@ -25,7 +25,7 @@ def getConnection(clientSocket, addr):
  	#clientRequest = "Tommy,poop"
 
  	clientInfo = clientRequest.split(",");
- 	if len(clientInfo != 2):
+ 	if len(clientInfo) != 2:
  		response = "Invalid Username or Password"
  		clientSocket.send(response)
  		clientSocket.close()
