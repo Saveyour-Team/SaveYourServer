@@ -2,11 +2,14 @@ import threading
 import socket
 import Login
 import FileManager
+import ssl
 
 #Adding this line to test git autodeploy! This counts as a difference I hope...
 PORT = 1337 #Currently set to 80 so I can debug by going to localhost in my browser and seeing what it says.
 ADDRESS = ('0.0.0.0', PORT)
 MAX_INC_SIZE = 4096
+
+
 
 
 def authenticate(username, password):
@@ -60,6 +63,7 @@ def startListening():
 	"""Start listening for incoming connections"""
 	#Prepare a sever socket
 	serverSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+	serverSocket = ssl.wrap_socket(serverSocket, cerfile='server.pem', server_side=True)
 	serverSocket.bind(ADDRESS)
 	serverSocket.listen(5)
 	print "NOW LISTENING"
