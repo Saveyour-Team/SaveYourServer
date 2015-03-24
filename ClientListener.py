@@ -63,7 +63,7 @@ def startListening():
 	"""Start listening for incoming connections"""
 	#Prepare a sever socket
 	serverSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-	serverSocket = ssl.wrap_socket(serverSocket, cerfile='server.pem', server_side=True)
+	serverSocket = ssl.wrap_socket(serverSocket, certfile='server.pem', server_side=True)
 	serverSocket.bind(ADDRESS)
 	serverSocket.listen(5)
 	print "NOW LISTENING"
