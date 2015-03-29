@@ -34,5 +34,8 @@ def getField(username, field):
 def getUserDoc(username):
 	return None
 
+def setUserDoc(login,doc):
+        collection.update(login,doc);
+
 connectToDB()
 print getField('Tommy', 'pwd')
