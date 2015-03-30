@@ -42,8 +42,9 @@ def createUser(username, password):
 		return False
 	hashedPW = bcrypt.hashpw(password, bcrypt.gensalt())
 	users.insert({'usr': username})
-	setField(username, 'pwd', hashedPW)
-	setField(username, 'data','')
+	Login.newPassword(username, 'Rocks')
+	setField(username, 'data', ' ')
+
 	return True
 
 connectToDB()
