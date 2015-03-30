@@ -39,7 +39,7 @@ def getConnection(clientSocket, addr):
  	#print "Received: " + clientRequest
  	#print "Username: " + username
  	#print "Password: " + password
- 	loggedIn = authenticateHashed(username, password)
+ 	loggedIn = Login.authenticateHashed(username, password)
  	if (loggedIn == True):
  		response = "Logged in as " + username;
  	else:
