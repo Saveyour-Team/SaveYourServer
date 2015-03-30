@@ -6,7 +6,7 @@ import ssl
 import bcrypt
 
 #NOTE: Port 1337 = Master Build, Port 1338 = Testing Build!
-PORT = 1337
+PORT = 1338
 ADDRESS = ('0.0.0.0', PORT)
 MAX_INC_SIZE = 4096
 SERVER_KEYFILE = 'server.pem' #This must be the filename of the server's pem file with certificate and private key!
@@ -43,6 +43,17 @@ def getConnection(clientSocket, addr):
  	#print "Received: " + clientRequest
  	#print "Username: " + username
  	#print "Password: " + password
+
+	elif (command == 'register'):
+ 		result = createUser(username, password)
+ 		if (result):
+ 			response = "Successfully Registered!"
+ 		else:
+ 			response = "Username already exists!"
+ 		clientSocket.send(response)
+ 		clientSocket.close()
+ 		return
+
  	loggedIn = Login.authenticateHashed(username, password)
  	if (loggedIn == False):
  		response = "Invalid Username or Password"
@@ -50,7 +61,7 @@ def getConnection(clientSocket, addr):
  		return
  	response = "Logged in as " + username;	
 	data = FileManager.getField(username, 'data')
-	response = response + "\nData: " + data
+	response = response + "\r\r\r" + data
  	if (command == 'login'):
  			clientSocket.send(response)
  			clientSocket.close()
@@ -67,6 +78,8 @@ def getConnection(clientSocket, addr):
  		response = "Updated the data of " + username;
  		clientSocket.send(response)
  		clientSocket.close()
+
+
 
 
 
