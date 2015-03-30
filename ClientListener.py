@@ -39,7 +39,7 @@ def getConnection(clientSocket, addr):
  	#print "Received: " + clientRequest
  	#print "Username: " + username
  	#print "Password: " + password
- 	loggedIn = authenticate(username, password)
+ 	loggedIn = authenticateHashed(username, password)
  	if (loggedIn == True):
  		response = "Logged in as " + username;
  	else:
@@ -83,4 +83,3 @@ def stopListening():
 #This line is here for debug purposes, later on the ClientListener will probably be called from elsewhere.
 startListening()
 FileManager.connectToDB()
-FileManager.createUser('Teich', 'Rocks')
