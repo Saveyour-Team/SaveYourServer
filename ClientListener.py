@@ -43,9 +43,8 @@ def getConnection(clientSocket, addr):
  	#print "Received: " + clientRequest
  	#print "Username: " + username
  	#print "Password: " + password
-
 	if (command == 'register'):
- 		result = createUser(username, password)
+ 		result = FileManager.createUser(username, password)
  		if (result):
  			response = "Successfully Registered!"
  		else:
