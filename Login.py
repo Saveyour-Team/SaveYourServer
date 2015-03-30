@@ -1,4 +1,5 @@
 import FileManager
+import bcrypt
 
 
 
@@ -26,5 +27,4 @@ def authenticateHashed(username, password):
 
 def newPassword(username, newPassword):
 	 hashedPW = bcrypt.hashpw(newPassword, bcrypt.gensalt())
-	 FileManager.setField(username, 'pwd', hashedPW)
 	 FileManager.setField(username, 'pwd', hashedPW)

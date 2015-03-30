@@ -1,4 +1,5 @@
 from pymongo import MongoClient
+import bcrypt
 
 usersMockup = {'Tommy':'pop', 'Brendan':'ih8slackbot', 'Nate':'kingProjectManager', 'Justin':'whyPop?', 'Terrence':'What?', 'John':'mongoDBisDaBest', 'Simran':'pyth0n'}
 
