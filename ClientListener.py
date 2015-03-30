@@ -3,9 +3,10 @@ import socket
 import Login
 import FileManager
 import ssl
+import bcrypt
 
 #Adding this line to test git autodeploy! This counts as a difference I hope...
-PORT = 1337 #Currently set to 80 so I can debug by going to localhost in my browser and seeing what it says.
+PORT = 1338 #Currently set to 80 so I can debug by going to localhost in my browser and seeing what it says.
 ADDRESS = ('0.0.0.0', PORT)
 MAX_INC_SIZE = 4096
 
@@ -82,3 +83,4 @@ def stopListening():
 #This line is here for debug purposes, later on the ClientListener will probably be called from elsewhere.
 startListening()
 FileManager.connectToDB()
+FileManager.createUser('Teich', 'Rocks')

@@ -17,3 +17,14 @@ def authenticate(username, password):
 		return False
 	return serversidepw == passwordHash
 
+
+def authenticateHashed(username, password):
+	serversidepw = FileManager.getField(username, 'pwd')
+	if serversidepw == None:
+		return False
+	return bcrypt.hashpw(password, serversidepw)
+
+def newPassword(username, newPassword):
+	 hashedPW = bcrypt.hashpw(newPassword, bcrypt.gensalt())
+	 FileManager.setField(username, 'pwd', hashedPW)
+	 FileManager.setField(username, 'pwd', hashedPW)
