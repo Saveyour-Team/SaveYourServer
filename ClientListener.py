@@ -31,7 +31,7 @@ def getConnection(clientSocket, addr):
 
  	clientInfo = clientRequest.split("\r\r\r");
  	if len(clientInfo) < 3:
- 		response = "Invalid Username or Password"
+ 		response = "Invalid Username or Password (Or Packet Format)"
  		clientSocket.send(response)
  		clientSocket.close()
  		return
