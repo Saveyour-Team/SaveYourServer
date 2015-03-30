@@ -44,7 +44,7 @@ def getConnection(clientSocket, addr):
  	#print "Username: " + username
  	#print "Password: " + password
 
-	elif (command == 'register'):
+	if (command == 'register'):
  		result = createUser(username, password)
  		if (result):
  			response = "Successfully Registered!"
