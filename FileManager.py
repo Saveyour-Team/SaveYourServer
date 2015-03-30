@@ -42,9 +42,7 @@ def createUser(username, password):
 	if foundUsers.count() > 0:
 		return False
 	hashedPW = bcrypt.hashpw(password, bcrypt.gensalt())
-	users.insert({'usr': username})
-	Login.newPassword(username, 'Rocks')
-	setField(username, 'data', ' ')
+	users.insert({'usr': username, 'pwd':password, 'data':''})
 
 	return True
 
