@@ -21,6 +21,7 @@ def authenticate(username, password):
 
 def authenticateHashed(username, password):
 	serversidepw = FileManager.getField(username, 'pwd')
+	print serversidepw
 	if serversidepw == None:
 		return False
 	return bcrypt.hashpw(password, serversidepw)

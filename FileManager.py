@@ -34,13 +34,14 @@ def getField(username, field):
 	return data[field]
 
 def setField(username, field, data):
-	users.find_one_and_update({'usr': username}, {'$set': {field: data}})
+	users.update({'usr': username}, {'$set': {field: data}})
 
 def createUser(username, password):
-	if users.count({'usr': username}) > 0:
+	foundUsers = users.find({'usr':username})
+	if foundUsers.count() > 0:
 		return False
-	hashedPW = bcrypt.hashpw(newPassword, bcrypt.gensalt())
-	users.insert_one({'usr': username})
+	hashedPW = bcrypt.hashpw(password, bcrypt.gensalt())
+	users.insert({'usr': username})
 	setField(username, 'pwd', hashedPW)
 	setField(username, 'data','')
 	return True
