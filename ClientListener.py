@@ -5,10 +5,11 @@ import FileManager
 import ssl
 import bcrypt
 
-#Adding this line to test git autodeploy! This counts as a difference I hope...
-PORT = 1337 #Currently set to 80 so I can debug by going to localhost in my browser and seeing what it says.
+#NOTE: Port 1337 = Master Build, Port 1338 = Testing Build!
+PORT = 1338 
 ADDRESS = ('0.0.0.0', PORT)
 MAX_INC_SIZE = 4096
+SERVER_KEYFILE = 'server.pem' #This must be the filename of the server's pem file with certificate and private key!
 
 
 
@@ -27,8 +28,8 @@ def getConnection(clientSocket, addr):
  	clientRequest = clientSocket.recv(MAX_INC_SIZE)
 
 
- 	clientInfo = clientRequest.split(",");
- 	if len(clientInfo) != 2:
+ 	clientInfo = clientRequest.split("\n");
+ 	if len(clientInfo) < 3:
  		response = "Invalid Username or Password"
  		clientSocket.send(response)
  		clientSocket.close()
@@ -36,27 +37,38 @@ def getConnection(clientSocket, addr):
 
  	username = clientInfo[0]
  	password = clientInfo[1]
+ 	command = clientInfo[2]
+
  	#print "Received: " + clientRequest
  	#print "Username: " + username
  	#print "Password: " + password
  	loggedIn = Login.authenticateHashed(username, password)
- 	if (loggedIn == True):
- 		response = "Logged in as " + username;
- 	else:
+ 	if (loggedIn == False):
  		response = "Invalid Username or Password"
- 	#print response;
+ 		clientSocket.send(response)
+ 		return
+ 	response = "Logged in as " + username;	
+	data = FileManager.getField(username, 'data')
+	response = response + "\nData: " + data
+ 	if (command == 'login'):
+ 			clientSocket.send(response)
+ 			clientSocket.close()
+ 			return
 
-	if loggedIn:
-		data = FileManager.getField(username, 'data')
-		response = response + ", Data: " + data
- 	clientSocket.send(response)
+ 	else if (command == 'upload'):
+ 		if len(clientInfo != 4):
+ 			response = "Invalid Username or Password"
+ 			clientSocket.send(response)
+ 			clientSocket.close()
+ 			return
+ 		clientdata = clientInfo[3]
+ 		FileManager.setField(username, 'data', clientdata)
+ 		response = "Updated the data of " + username;
+ 		clientSocket.send(response)
+ 		clientSocket.close()
 
-# 	if loggedIn:
-# 		data = FileManager.getField(username, 'data')
-# 		clientSocket.send(data)
 
- 	clientSocket.close()
- 	return
+
 
 
 
@@ -64,7 +76,7 @@ def startListening():
 	"""Start listening for incoming connections"""
 	#Prepare a sever socket
 	serverSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-	serverSocket = ssl.wrap_socket(serverSocket, certfile='server.pem', keyfile='server.pem', server_side=True, ssl_version=ssl.PROTOCOL_TLSv1)
+	serverSocket = ssl.wrap_socket(serverSocket, certfile=SERVER_KEYFILE, keyfile=SERVER_KEYFILE, server_side=True, ssl_version=ssl.PROTOCOL_TLSv1)
 	serverSocket.bind(ADDRESS)
 	serverSocket.listen(5)
 	print "NOW LISTENING"
