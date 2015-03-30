@@ -26,6 +26,7 @@ def getConnection(clientSocket, addr):
 	loggedIn = False;
 
  	clientRequest = clientSocket.recv(MAX_INC_SIZE)
+ 	print clientRequest
 
 
  	clientInfo = clientRequest.split("\n");
