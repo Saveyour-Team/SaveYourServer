@@ -55,7 +55,7 @@ def getConnection(clientSocket, addr):
  			clientSocket.close()
  			return
 
- 	else if (command == 'upload'):
+ 	elif (command == 'upload'):
  		if len(clientInfo != 4):
  			response = "Invalid Username or Password"
  			clientSocket.send(response)
