@@ -37,7 +37,7 @@ def setField(username, field, data):
 	users.find_one_and_update({'usr': username}, {'$set': {field: data}})
 
 def createUser(username, password):
-	if (users.count({'usr': username} > 0):
+	if users.count({'usr': username}) > 0:
 		return False
 	hashedPW = bcrypt.hashpw(newPassword, bcrypt.gensalt())
 	users.insert_one({'usr': username})
