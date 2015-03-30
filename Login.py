@@ -24,8 +24,8 @@ def authenticateHashed(username, password):
 	print serversidepw
 	if serversidepw == None:
 		return False
-	return bcrypt.hashpw(password.encode('utf-8'), serversidepw)
+	return bcrypt.hashpw(password.encode('utf-8'), serversidepw.encode('utf-8')) == serversidepw
 
 def newPassword(username, newPassword):
-	 hashedPW = bcrypt.hashpw(newPassword, bcrypt.gensalt())
+	 hashedPW = bcrypt.hashpw(newPassword.encode('utf-8'), bcrypt.gensalt())
 	 FileManager.setField(username, 'pwd', hashedPW)
