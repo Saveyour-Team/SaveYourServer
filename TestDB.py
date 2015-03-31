@@ -1,5 +1,6 @@
 import FileManager
 import unittest
+from random import randint
 
 class TestFileManager(unittest.TestCase):
 	def setUp(self):
@@ -19,10 +20,10 @@ class TestFileManager(unittest.TestCase):
   		FileManager.setField(username, 'pwd', pwd)
 
   		data2 = FileManager.getField(username, 'data')
-  		assertEquals(data, data2, 'Pulled data does not match set data!')
+  		assertEqual(data, data2, 'Pulled data does not match set data!')
 
   		pwd2 = FileManager.getField(username, 'pwd')
-  		assertEquals(pwd, pwd2, 'Pulled password does not match set password!')
+  		assertEqual(pwd, pwd2, 'Pulled password does not match set password!')
 
   		notthere = FileManager.getField(username, 'balloons')
   		assertIsNone(notthere, 'Error: pulled nonexistant data!')
@@ -30,7 +31,7 @@ class TestFileManager(unittest.TestCase):
   		newField = 'apples\nand&&"cake'
   		FileManager.setField(username, newField)
   		newField2 = FileManager.getField(username, newField)
-  		assertEquals(newField, newField2,'Pulled data does not match set data! For trickily formatted string.')
+  		assertEqual(newField, newField2,'Pulled data does not match set data! For trickily formatted string.')
 
   		FileManager.deleteField(username, newField)
   		notthereagain = FileManager.getField(username, newField)
