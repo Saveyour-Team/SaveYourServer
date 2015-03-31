@@ -20,22 +20,22 @@ class TestFileManager(unittest.TestCase):
   		FileManager.setField(username, 'pwd', pwd)
 
   		data2 = FileManager.getField(username, 'data')
-  		assertEqual(data, data2, 'Pulled data does not match set data!')
+  		self.assertEqual(data, data2, 'Pulled data does not match set data!')
 
   		pwd2 = FileManager.getField(username, 'pwd')
-  		assertEqual(pwd, pwd2, 'Pulled password does not match set password!')
+  		self.assertEqual(pwd, pwd2, 'Pulled password does not match set password!')
 
   		notthere = FileManager.getField(username, 'balloons')
-  		assertIsNone(notthere, 'Error: pulled nonexistant data!')
+  		self.assertIsNone(notthere, 'Error: pulled nonexistant data!')
 
   		newField = 'apples\nand&&"cake'
   		FileManager.setField(username, newField)
   		newField2 = FileManager.getField(username, newField)
-  		assertEqual(newField, newField2,'Pulled data does not match set data! For trickily formatted string.')
+  		self.assertEqual(newField, newField2,'Pulled data does not match set data! For trickily formatted string.')
 
   		FileManager.deleteField(username, newField)
   		notthereagain = FileManager.getField(username, newField)
-  		assertIsNone(notthereagain, 'Failed to delete field.')
+  		self.assertIsNone(notthereagain, 'Failed to delete field.')
    	
 
 	def test_create_remove_user(self):
@@ -44,14 +44,14 @@ class TestFileManager(unittest.TestCase):
 		name = 'testUser'+name
 		pwd = "a'testpass\r\n" + 'more\t\b\\"testing'
 		result = FileManager.createUser(name, pwd)
-		assertTrue(result, 'Failed to add user!')
+		self.assertTrue(result, 'Failed to add user!')
 
 		result = FileManager.createUser(name, pwd)
-		assertFalse(result, 'Improperly added a user with the same name as an existing user!')
+		self.assertFalse(result, 'Improperly added a user with the same name as an existing user!')
 
 		FileManager.removeUser(name)
 		result = FileManager.createUser(name, pwd)
-		assertTrue(result, 'Failed to remove and readd a user!')
+		self.assertTrue(result, 'Failed to remove and readd a user!')
 
 		result1 = FileManager.removeUser(name)
 		result2 = FileManager.removeUser(name)
