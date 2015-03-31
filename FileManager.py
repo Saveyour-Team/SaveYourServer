@@ -37,6 +37,9 @@ def getField(username, field):
 def setField(username, field, data):
 	users.update({'usr': username}, {'$set': {field: data}})
 
+def deleteField(username, field):
+	users.update({'usr': username}, {'$unset': {field:''}})
+
 def createUser(username, password):
 	foundUsers = users.find({'usr':username})
 	if foundUsers.count() > 0:
@@ -45,5 +48,8 @@ def createUser(username, password):
 	users.insert({'usr': username, 'pwd':hashedPW, 'data':''})
 
 	return True
+
+def removeUser(username):
+	users.remove({'usr': username})
 
 connectToDB()
