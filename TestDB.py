@@ -26,7 +26,7 @@ class TestFileManager(unittest.TestCase):
   		self.assertEqual(pwd, pwd2, 'Pulled password does not match set password!')
 
   		notthere = FileManager.getField(username, 'balloons')
-  		self.Equal(notthere, None, 'Error: pulled nonexistant data!')
+  		self.assertEqual(notthere, None, 'Error: pulled nonexistant data!')
 
   		newField = 'apples\nand&&"cake'
   		FileManager.setField(username, newField)
