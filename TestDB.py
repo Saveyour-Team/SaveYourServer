@@ -29,9 +29,10 @@ class TestFileManager(unittest.TestCase):
   		self.assertEqual(notthere, None, 'Error: pulled nonexistant data!')
 
   		newField = 'apples\nand&&"cake'
-  		FileManager.setField(username, newField)
-  		newField2 = FileManager.getField(username, newField)
-  		self.assertEqual(newField, newField2,'Pulled data does not match set data! For trickily formatted string.')
+  		value = "oranges\a\as\fdas\fd\"" + 'babana\r\\ar\ads"\'dsnfdansdfn'
+  		FileManager.setField(username, newField, value)
+  		value2 = FileManager.getField(username, newField)
+  		self.assertEqual(value, value2,'Pulled data does not match set data! For trickily formatted string.')
 
   		FileManager.deleteField(username, newField)
   		notthereagain = FileManager.getField(username, newField)
