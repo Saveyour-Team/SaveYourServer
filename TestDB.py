@@ -41,7 +41,7 @@ class TestFileManager(unittest.TestCase):
 	def test_create_remove_user(self):
 
 		name = randint(0, 999999999)
-		name = 'testUser'+name
+		name = 'testUser'+str(name)
 		pwd = "a'testpass\r\n" + 'more\t\b\\"testing'
 		result = FileManager.createUser(name, pwd)
 		self.assertTrue(result, 'Failed to add user!')
