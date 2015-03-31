@@ -12,7 +12,7 @@ class TestFileManager(unittest.TestCase):
   	def tearDown(self):
   		FileManager.removeUser(username)
 
-  	def test_set_get_delete_field():
+  	def test_set_get_delete_field(self):
   		data = 'this\n\r\t\r\a\bis"data' + "'print data"
   		pwd = '""""""""""newpassword""' + "''''''''''\\\\\n"
   		FileManager.setField(username, 'data', data)
@@ -37,7 +37,7 @@ class TestFileManager(unittest.TestCase):
   		assertIsNone(notthereagain, 'Failed to delete field.')
    	
 
-	def test_create_remove_user():
+	def test_create_remove_user(self):
 
 		name = randint(0, sys.maxint)
 		name = 'testUser'+name
