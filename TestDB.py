@@ -26,7 +26,7 @@ class TestFileManager(unittest.TestCase):
   		self.assertEqual(pwd, pwd2, 'Pulled password does not match set password!')
 
   		notthere = FileManager.getField(username, 'balloons')
-  		self.assertIsNone(notthere, 'Error: pulled nonexistant data!')
+  		self.Equal(notthere, None, 'Error: pulled nonexistant data!')
 
   		newField = 'apples\nand&&"cake'
   		FileManager.setField(username, newField)
@@ -35,7 +35,7 @@ class TestFileManager(unittest.TestCase):
 
   		FileManager.deleteField(username, newField)
   		notthereagain = FileManager.getField(username, newField)
-  		self.assertIsNone(notthereagain, 'Failed to delete field.')
+  		self.assertEqual(notthereagain, None,'Failed to delete field.')
    	
 
 	def test_create_remove_user(self):
