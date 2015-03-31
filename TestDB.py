@@ -3,8 +3,10 @@ import unittest
 
 class TestFileManager(unittest.TestCase):
 	def setUp(self):
-		global username = 'TestUser\n\r"'+"'a'print text"
-		global password = "\aa\\\n\r\t\b'" + '"print username'
+		global username
+		global password
+		username = 'TestUser\n\r"'+"'a'print text"
+		password = "\aa\\\n\r\t\b'" + '"print username'
 		FileManager.createUser(username , password)
 
   	def tearDown(self):
