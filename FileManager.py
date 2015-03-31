@@ -32,7 +32,11 @@ def getField(username, field):
 	data = users.find_one({"usr": username},{field:True})
 	if data == None:
 		return None
-	return data[field]
+	try:
+		return data[field]
+		
+	except KeyError:
+		return None
 
 def setField(username, field, data):
 	users.update({'usr': username}, {'$set': {field: data}})
