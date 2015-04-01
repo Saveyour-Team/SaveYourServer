@@ -32,10 +32,17 @@ def getField(username, field):
 	data = users.find_one({"usr": username},{field:True})
 	if data == None:
 		return None
-	return data[field]
+	try:
+		return data[field]
+		
+	except KeyError:
+		return None
 
 def setField(username, field, data):
 	users.update({'usr': username}, {'$set': {field: data}})
+
+def deleteField(username, field):
+	users.update({'usr': username}, {'$unset': {field:''}})
 
 def createUser(username, password):
 	foundUsers = users.find({'usr':username})
@@ -45,5 +52,8 @@ def createUser(username, password):
 	users.insert({'usr': username, 'pwd':hashedPW, 'data':''})
 
 	return True
+
+def removeUser(username):
+	users.remove({'usr': username})
 
 connectToDB()
