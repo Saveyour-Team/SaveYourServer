@@ -1,3 +1,13 @@
+SaveYourServer
+
+This is everything you need to run your own server for SaveYour.  The server is written in Python and is multi-threaded so that it accepts as many incoming connections as there are ports available on the host machine simultaneously. All connections to users running the SaveYour client goes through a connection that uses TLS to secure it, and passwords are hashed using the Python BCrypt library before being stored in the MongoDB database along with user information.
+
+If you don't know what SaveYour is, SaveYour is an organizational, productive application that contains weekly to-do’s, calendars, agendas, notes, etc. into one tool. Its target in particular is the college student; however, entreprenuers, professors, and busy individuals will find the tool useful as well! It supports modularized togglable windows that can be customized by other developers. There are certain macros for quick task management such as parsing highlighted text to add to one's weekly to-do module or to add to one's homework module. There is a button to quickly hide and unhide Saveyour as a reference to one's schedule in a glance. SaveYour is able to take ones tasks and look through one's weekly to-do in order to find an available time to assign those tasks to do.
+
+By using the following instructions you can host your own server for the SaveYour client, although you will also have to modify the client source to direct it towards your server!
+
+Note: Since the Server is written in Python, the binary and source files are the same.
+
 1) Installation:
 	a) First make sure that Python 2.7, the Python BCrypt library, and PyMongo 2.7 are installed on your server host.
 		i) You can input "pip install bcrypt" in your system console to install BCrypt once python is installed.
