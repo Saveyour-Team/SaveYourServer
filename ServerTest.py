@@ -72,27 +72,27 @@ class testServer(unittest.TestCase): #We are testing using the python unittest l
 	#TEST FOR: setField
 	def testSetField1(self):
 		FileManager.setField("Bob", "pwd", "NotBuilder")
-		self.assertEquals(Login.authenticateHashed("Bob", "NotBuilder"))
+		self.assertTrue(Login.authenticateHashed("Bob", "NotBuilder"))
 
 	def testSetField2(self):
 		FileManager.setField("Barney", "pwd", "Spider")
-		self.assertEquals(Login.authenticateHashed("Barney", "Spider"))
+		self.assertTrue(Login.authenticateHashed("Barney", "Spider"))
 
 	def testSetField3(self):
 		FileManager.setField("BeAutY", "pwd", "Sleeping")
-		self.assertEquals(Login.authenticateHashed("BeAutY", "Sleeping"))
+		self.assertTrue(Login.authenticateHashed("BeAutY", "Sleeping"))
 
 	def testSetField4(self):
 		FileManager.setField("Bob", "usr", "Eric")
-		self.assertEquals(Login.authenticateHashed("Eric", "NotBuilder"))
+		self.assertTrue(Login.authenticateHashed("Eric", "NotBuilder"))
 
 	def testSetField5(self):
 		FileManager.setField("Barney", "usr", "Marcus")
-		self.assertEquals(Login.authenticateHashed("Marcus", "Spider"))
+		self.assertTrue(Login.authenticateHashed("Marcus", "Spider"))
 
 	def testSetField6(self):
 		FileManager.setField("BeAutY", "usr", "Sleeping")
-		self.assertEquals(Login.authenticateHashed("Sleeping", "Sleeping"))
+		self.assertTrue(Login.authenticateHashed("Sleeping", "Sleeping"))
 
 	#TEST FOR: setting data and getting data
 	def testBothFields1(self):
