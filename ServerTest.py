@@ -3,13 +3,13 @@ import Login
 import FileManager
 import unittest
 
-class testServer(unittest.TestCase):
+class testServer(unittest.TestCase): #We are testing using the python unittest library.
 	#In Visual Studio, create accounts with (username,password):
 	#("Bob", "Builder")
 	#("Barney", Dinosaur")
 	#("BeAutY", " bEAsT")
 
-	#test authenticateHashed
+	#TEST FOR: authenticateHashed()
 	def testAuthenticateHashed1(self):
 		self.assertTrue(Login.authenticateHashed("Bob", "Builder"))
 
@@ -31,7 +31,7 @@ class testServer(unittest.TestCase):
 	def testAuthenticateHashed7(self):
 		self.assertFalse(Login.authenticateHashed("BeAutY", "bEAst"))
 
-	#test newPassword
+	#TEST FOR: newPassword()
 	def testNewPassword1(self):
 		Login.newPassword("Bob", "Burden")
 		self.assertFalse(Login.authenticateHashed("Bob", "Builder"))
@@ -47,13 +47,13 @@ class testServer(unittest.TestCase):
 		self.assertFalse(Login.authenticateHashed("BeAutY", " bEAsT"))
 		self.assertTrue(Login.authenticateHashed("BeAutY", "  bEAsT"))
 
-	#not sure how to test getConneciton(). We can use Visual Studio to check if it is sending back the right 
+	#not sure how to test getConnection(). We can use Visual Studio to check if it is sending back the right
 	#strings
 
-	#not sure how to test startListening(). Since it prints out "NOW LISTENING" and "ACCEPTED CONNECTION", 
+	#not sure how to test startListening(). Since it prints out "NOW LISTENING" and "ACCEPTED CONNECTION",
 	#we can check in Visual Studio to see if it prints out the correct messages
 
-	#test getField
+	#TEST FOR: getField()
 	def testGetField1(self):
 		self.assertEquals(FileManager.getField("Bob", "pwd"), "Burden")
 		self.assertEquals(FileManager.getField("Barney", "pwd"), "Hippo")
@@ -69,7 +69,7 @@ class testServer(unittest.TestCase):
 		self.assertEquals(FileManager.getField("Barney", "data"), "")
 		self.assertEquals(FileManager.getField("BeAutY", "data"), "")
 
-	#test setFeild
+	#TEST FOR: setField
 	def testSetField1(self):
 		FileManager.setField("Bob", "pwd", "NotBuilder")
 		self.assertEquals(Login.authenticateHashed("Bob", "NotBuilder"))
@@ -86,7 +86,7 @@ class testServer(unittest.TestCase):
 		FileManager.setField("Bob", "usr", "Eric")
 		self.assertEquals(Login.authenticateHashed("Eric", "NotBuilder"))
 
-	def testSetFeild5(self):
+	def testSetField5(self):
 		FileManager.setField("Barney", "usr", "Marcus")
 		self.assertEquals(Login.authenticateHashed("Marcus", "Spider"))
 
@@ -94,7 +94,7 @@ class testServer(unittest.TestCase):
 		FileManager.setField("BeAutY", "usr", "Sleeping")
 		self.assertEquals(Login.authenticateHashed("Sleeping", "Sleeping"))
 
-	#test setting data and getting data
+	#TEST FOR: setting data and getting data
 	def testBothFields1(self):
 		FileManager.setField("Eric", "data", "the happy snowman")
 		self.assertEquals(FileManager.getField("Eric", "data"), "the happy snowman")
@@ -106,8 +106,8 @@ class testServer(unittest.TestCase):
 	def testBothFields3(self):
 		FileManager.setField("Sleeping", "data", "the melting snowman")
 		self.assertEquals(FileManager.getField("Sleeping", "data"), "the melting snowman")
-	
-	#test New fields
+
+	#TEST FOR: New fields
 	def testNewfields1(self):
 		FileManager.setField("Eric", "Condition", "Living")
 		self.assertEquals(FileManager.getField("Eric", "Condition"), "Living")
@@ -122,4 +122,4 @@ class testServer(unittest.TestCase):
 
 	#createUser and connectToDB may be database related functions that should be tested in database testing
 
-unittest.main()
+unittest.main() #Test Suite calls all functions to test.
