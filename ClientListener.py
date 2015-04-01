@@ -5,8 +5,8 @@ import FileManager
 import ssl
 import bcrypt
 
-#NOTE: Port 1337 = Master Build, Port 1338 = Testing Build!
-PORT = 1338
+#NOTE: Port 1337 = Master Build, Port 1338 = Testing Build! 13388 = Beta Build
+PORT = 13388
 ADDRESS = ('0.0.0.0', PORT)
 MAX_INC_SIZE = 4096
 SERVER_KEYFILE = 'server.pem' #This must be the filename of the server's pem file with certificate and private key!
