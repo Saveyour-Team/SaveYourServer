@@ -34,6 +34,7 @@ def getConnection(clientSocket, addr):
  		response = "Invalid Username or Password (Or Packet Format)"
  		clientSocket.send(response)
  		clientSocket.close()
+ 		sys.exit()
  		return
 
  	username = clientInfo[0]
@@ -51,12 +52,14 @@ def getConnection(clientSocket, addr):
  			response = "Username already exists!"
  		clientSocket.send(response)
  		clientSocket.close()
+ 		sys.exit()
  		return
 
  	loggedIn = Login.authenticateHashed(username, password)
  	if (loggedIn == False):
  		response = "Invalid Username or Password"
  		clientSocket.send(response)
+ 		sys.exit()
  		return
  	response = "Logged in as " + username;	
 	data = FileManager.getField(username, 'data')
@@ -64,6 +67,7 @@ def getConnection(clientSocket, addr):
  	if (command == 'login'):
  			clientSocket.send(response)
  			clientSocket.close()
+ 			sys.exit()
  			return
 
  	elif (command == 'upload'):
@@ -77,7 +81,8 @@ def getConnection(clientSocket, addr):
  		response = "Updated the data of " + username;
  		clientSocket.send(response)
  		clientSocket.close()
-
+ 	clientSocket.close()
+ 	sys.exit()
 
 
 
