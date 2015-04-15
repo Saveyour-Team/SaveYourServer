@@ -7,7 +7,7 @@ import bcrypt
 import sys
 
 #NOTE: Port 1337 = Master Build, Port 1338 = Testing Build!
-PORT = 1338
+PORT = 1337
 ADDRESS = ('0.0.0.0', PORT)
 MAX_INC_SIZE = 4096
 SERVER_KEYFILE = 'server.pem' #This must be the filename of the server's pem file with certificate and private key!
