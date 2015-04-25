@@ -62,10 +62,12 @@ def getConnection(clientSocket, addr):
  		clientSocket.send(response)
  		sys.exit()
  		return
- 	response = "Logged in as " + username;	
-	data = FileManager.getField(username, 'data')
-	response = response + "\r\r\r" + data
+
  	if (command == 'login'):
+ 			response = "Logged in as " + username;	
+			data = FileManager.getField(username, 'data')
+			response = response + "\r\r\r" + data
+			print response
  			clientSocket.send(response)
  			clientSocket.close()
  			sys.exit()
